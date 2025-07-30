@@ -52,6 +52,27 @@
         to Sequence Flow!</h1>
       <h2>Upload your alignment file or explore the example.</h2>
       <div id="file_upload_container">
+        <br>
+        
+        <div>
+          <input type="checkbox" id="align_fasta_checkbox" autocomplete="off">
+          <label for="align_fasta_checkbox">
+            <span
+              data-wenk="If selected, the uploaded FASTA file will be aligned automatically using Clustal Omega"
+              data-wenk-pos="right" class="wenk-length--fit">
+              Upload raw FASTA (unaligned)
+            </span>
+          </label>
+          <br>
+        </div>
+        
+        <div id="unaligned_input_wrapper" style="display:none;">
+          <input type="file" id="unaligned_file_input" autocomplete="off" style='display:none;'
+          accept=".fasta, .fa, .fas">
+          <label for="unaligned_file_input" id="tree_file_input_label">
+          Upload unaligned FASTA file <span id="check3" style="color:#92fa5a"></span></label>
+          <div id="for_unaligned_file_name" style="display:none"></div>
+        </div>
         <div>
           <input type="file" id="alignment_file_input_" style='display:none;' autocomplete="off"
             name="alignment_file_input_"

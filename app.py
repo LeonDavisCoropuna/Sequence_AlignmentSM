@@ -4,8 +4,12 @@ import random
 import string
 from Bio import AlignIO
 import json
+from Bio.Align.Applications import ClustalOmegaCommandline
+import subprocess
 
 app = Flask(__name__)
+app.config["UPLOAD_FOLDER"] = "temporary_files"
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 # app configuration
 app.config.update(
@@ -33,6 +37,8 @@ ALLOWED_EXTENSIONS = {
     "stockholm": "stockholm",
 }
 
+def random_filename(extension):
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=12)) + f".{extension}"
 
 def check_file_extension(filename):
     extension = filename.rsplit(".", 1)[1].lower()
@@ -41,19 +47,15 @@ def check_file_extension(filename):
         ALLOWED_EXTENSIONS.get(extension, None),
     )
 
-
 def read_sequences(path, seq_format):
     alignment = AlignIO.read(path, seq_format)
     return {str(record.id): str(record.seq) for record in alignment}
 
-
 #########  REST API
-
 
 @app.route("/")
 def index():
     return render_template("index.html")
-
 
 @app.route("/upload_sequences", methods=["PUT"])
 def return_parsed_sequences():
@@ -78,9 +80,8 @@ def return_parsed_sequences():
 
     return (jsonify(sequences), 200) if valid else (f"Invalid file: {error}", 500)
 
-
 @app.route("/get_example/<dataset_name>", methods=["GET"])
-def return_example_data(dataset_name: string):
+def return_example_data(dataset_name: str):
     dataset_path = os.path.join("static", "example_datasets", f"{dataset_name}.json")
     dataset = None
     try:
@@ -91,6 +92,51 @@ def return_example_data(dataset_name: string):
 
     return jsonify(dataset), 200
 
+@app.route("/upload_and_align", methods=["POST"])
+def upload_and_align():
+    if 'fasta_file' not in request.files:
+        return "Missing file", 400
+
+    fasta_file = request.files['fasta_file']
+    input_filename = random_filename("fasta")
+    input_path = os.path.join(app.config["UPLOAD_FOLDER"], input_filename)
+    fasta_file.save(input_path)
+
+    aligned_path = os.path.join(app.config["UPLOAD_FOLDER"], random_filename("fasta"))
+    tree_path = os.path.join(app.config["UPLOAD_FOLDER"], random_filename("nwk"))
+
+    try:
+        # Paso 1: alineamiento con Clustal Omega (usando Biopython)
+        clustalomega_cline = ClustalOmegaCommandline(
+            infile=input_path,
+            outfile=aligned_path,
+            verbose=True,
+            auto=True,
+            force=True
+        )
+        stdout, stderr = clustalomega_cline()
+
+        # Paso 2: generar árbol con FastTree
+        with open(aligned_path, "rb") as aln_input, open(tree_path, "wb") as tree_output:
+            subprocess.run(["fasttree"], stdin=aln_input, stdout=tree_output, check=True)
+
+        # Leer alineamiento y árbol
+        sequences = read_sequences(aligned_path, "fasta")  # Specify seq_format as "fasta"
+        with open(tree_path) as f:
+            tree_newick = f.read()
+
+    except Exception as e:
+        return f"Error during processing: {e}", 500
+    finally:
+        # Limpiar archivos temporales
+        for f in [input_path, aligned_path, tree_path]:
+            if os.path.exists(f):
+                os.remove(f)
+
+    return jsonify({
+        "sequences": sequences,
+        "tree": tree_newick
+    })
 
 if __name__ == "__main__":
     app.run(
