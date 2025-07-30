@@ -1,19 +1,34 @@
-export const DEFAULT_NUCLEIC_COLORING_SCHEMA = {
-	A: '#3680f7',
-	C: '#39db64',
-	T: '#eb4034',
-	G: '#ebc950',
-	U:'#eb7a34',
-	'?':'#808080',
-	'-':'#FFFFFF'
-};
 export const DEFAULT_PROTEIN_COLORING_SCHEMA = {
-	'A':'#D04E3A','V':'#D66453','I':'#DC7A6B','L':'#E29084','M':'#E8A79D','F':'#EBA178','Y':'#E89162','W':'#E5814B',
-	'S':'#2475B2','T':'#5B98C5','N':'#92BAD8','Q':'#A0C1D9',
-	'C':'#EA6DDE','U':'#ED7FE2','G':'#EF92E6','P':'#F2A4EA',
-	'R':'#62CB35','H':'#B1E59A','K':'#89D868','D':'#DDE22D','E':'#EAED7C',
-
-	'B':'#858585','J':'#949494','O':'#A4A4A4','Z':'#B3B3B3','X':'#808080',
-	'*':'#808080', '-':'#FFFFFF','?':'#808080'
+  "A": "#9b9076",
+  "C": "#f56201",
+  "D": "#0ca65d",
+  "E": "#0da29a",
+  "F": "#dda3d9",
+  "G": "#15d46f",
+  "H": "#0194f9",
+  "I": "#e0ad9a",
+  "K": "#28cae0",
+  "L": "#d7b0a7",
+  "M": "#bcb6c9",
+  "N": "#0fcfb9",
+  "P": "#cbb00b",
+  "Q": "#0a9fb3",
+  "R": "#3fc6f8",
+  "S": "#829586",
+  "T": "#b5bca2",
+  "V": "#dfae93",
+  "W": "#fe08fb",
+  "Y": "#d1a7ff"
 };
+
+export const DEFAULT_NUCLEIC_COLORING_SCHEMA = {
+  "A": "#4169E1",
+  "C": "#FF4500",
+  "G": "#32CD32",
+  "T": "#FFA500",
+  "U": "#FF6347",
+  "-": "#FFFFFF",
+  "?": "#808080"
+};
+
 export const UNDEFINED_SYMBOL_COLOR = '#808080';
