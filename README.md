@@ -5,29 +5,46 @@ The production version is available at <https://sequenceflow.mimuw.edu.pl/>.
 
 ## How to start locally
 
-__(Should be used with Python 3.11)__  
-In order to start the application:
+> ✅ **Requires Python 3.10**
+> 🧬 Additionally, make sure you have `clustalo` and `FastTree` installed on your system.
 
-1. Download the repository.
-2. It's recommended to create a virtual Python environment and activate it.
-3. Install the Python packages from the `requirements.txt` file:
+To start the application locally:
+
+1. **Download** the repository.
+```bash
+git clone https://github.com/LeonDavisCoropuna/Sequence_AlignmentSM.git
+```
+
+2. **Create and activate a virtual environment**:
 
 ```bash
 python3.10 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
-````
+```
 
-4. Install and build the JavaScript dependencies. You need to have Node.js and NPM installed:
+3. **Install Python dependencies**:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. **Install system dependencies** for sequence alignment and tree generation:
+
+```bash
+sudo apt update
+sudo apt install clustalo fasttree
+```
+
+5. **Build JavaScript assets** (you need Node.js and npm installed):
 
 ```bash
 cd static/scripts
-npm i
+npm install
 npm run build
 cd ../../
 ```
 
-5. Run the application:
+6. **Run the Flask application**:
 
 ```bash
 python3 app.py
