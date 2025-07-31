@@ -11,10 +11,10 @@ body{
     flex-wrap: nowrap;
     align-items: center;
     --basic-color: #FCF6F5;
-    --second-color:#743187;
-    --main-color: #FF4F7B;
-    --dark-second-color: #3e204a;
-    --bright-main-color: #FF10F0;
+    --second-color:#AD4F00;
+    --main-color: #FF9000;
+    --dark-second-color: #7D3C00;
+    --bright-main-color: #FFA83D;
     --light-second-color:#cba0d6;
 }
 button{
@@ -43,7 +43,7 @@ header{
 }
 #header_button_wrapper{
     height: 100%;
-    max-width: 1280px;
+    max-width: 1480px;
     display: flex;
     flex-direction: row;
     gap:15px;
@@ -54,7 +54,7 @@ header{
     border: solid 2px var(--second-color);
     border-radius: 7px;
     color: var(--second-color);
-    width: 140px;
+    width: 190px;
     background-color: white;
     font-weight: bold;
     font-size: 16px;
@@ -118,16 +118,13 @@ footer{
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
     font-size: 18px;
     width: 70%;
     border: solid 2px var(--second-color);
     border-radius: 10px;
-    row-gap: 2rem;
+    row-gap: 1.5rem;
     background-color: white;
     box-shadow: 0px 7px 15px 0px var(--dark-second-color);
-    overflow-x: auto;
-
 }
 #alignment_file_input, #tree_file_input_label{
     display: block;
@@ -144,7 +141,6 @@ footer{
     box-shadow: 0px 6px 5px 0px rgb(191 166 166);
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 2em;
 }
 #for_alignment_file_name, #for_tree_file_name {
     color: grey;

@@ -34,7 +34,7 @@
   <header>
     <div id="header_container">
       <div id="logo" style="margin-right:20px">
-        <img src="{{ url_for('static', filename = 'images/SEQUENCE_FLOW_LOGO.svg')}}" alt="SEQUENCE FLOW"
+        <img src="{{ url_for('static', filename = 'images/SEQUENCE_FLOW_LOGO1.png')}}" alt="SEQUENCE FLOW"
           style="height:100%;" />
       </div>
       <div id="header_button_wrapper">
@@ -49,28 +49,27 @@
   <div id="main_container_for_main_page" style="display:none;align-items:center;" class="full_page">
     <div id="starting_page">
       <h1 style="font-family:Acquire;font-size:45px;margin:0;text-align:center;">Welcome
-        to Sequence Flow!</h1>
+        to Color Alignment!</h1>
       <h2>Upload your alignment file or explore the example.</h2>
       <div id="file_upload_container">
         <br>
-        
+
         <div>
           <input type="checkbox" id="align_fasta_checkbox" autocomplete="off">
           <label for="align_fasta_checkbox">
-            <span
-              data-wenk="If selected, the uploaded FASTA file will be aligned automatically using Clustal Omega"
-              data-wenk-pos="right" class="wenk-length--fit">
+            <span data-wenk="If selected, the uploaded FASTA file will be aligned automatically using Clustal Omega"
+              data-wenk-pos="right">
               Upload raw FASTA (unaligned)
             </span>
           </label>
           <br>
         </div>
-        
+
         <div id="unaligned_input_wrapper" style="display:none;">
           <input type="file" id="unaligned_file_input" autocomplete="off" style='display:none;'
-          accept=".fasta, .fa, .fas">
+            accept=".fasta, .fa, .fas">
           <label for="unaligned_file_input" id="tree_file_input_label">
-          Upload unaligned FASTA file <span id="check3" style="color:#92fa5a"></span></label>
+            Upload unaligned FASTA file <span id="check3" style="color:#92fa5a"></span></label>
           <div id="for_unaligned_file_name" style="display:none"></div>
         </div>
         <div>
@@ -154,14 +153,14 @@
                   <label for="other_color">Unknown symbol
                     color:</label>
                   <input type="color" id="other_color" autocomplete="off"><br>
-                  <label for="coloring_select">Coloring
-                    scheme:</label>
+                  <label for="coloring_select">Coloring scheme:</label>
                   <br />
                   <select id="coloring_select" name="coloring_select" autocomplete="off" style="font-size:16px;">
                     <option value="nucleic">Default
                       nucleic</option>
                     <option value="protein">Default
-                      protein</option>
+                      protein (GLOSUM62)</option>
+                    <option value="pam250_protein">PAM 250 Protein</option>
                     <option value="custom_nucleic">Custom
                       nucleic</option>
                     <option value="custom_protein">Custom
