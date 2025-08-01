@@ -1,10 +1,11 @@
-import { DEFAULT_NUCLEIC_COLORING_SCHEMA, DEFAULT_PROTEIN_COLORING_SCHEMA } from './constants/COLORING_SCHEMAS.js';
+import { DEFAULT_NUCLEIC_COLORING_SCHEMA, DEFAULT_PROTEIN_COLORING_SCHEMA, PAM250_PROTEIN_COLOR_SCHEMA } from './constants/COLORING_SCHEMAS.js';
 import { set_attributes } from './SanKEY_script.js';
 
 export class ColorChooser {
 	coloring_schemes = {
 		nucleic: {...DEFAULT_NUCLEIC_COLORING_SCHEMA},
 		protein: {...DEFAULT_PROTEIN_COLORING_SCHEMA},
+    pam250_protein: {...PAM250_PROTEIN_COLOR_SCHEMA},
 		custom_nucleic: {...DEFAULT_NUCLEIC_COLORING_SCHEMA},
 		custom_protein: {...DEFAULT_PROTEIN_COLORING_SCHEMA},
 		custom_full: {}
